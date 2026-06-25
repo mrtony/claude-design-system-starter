@@ -1,0 +1,236 @@
+/* ============================================================================
+   Anthropic-inspired Design System — Tailwind v4 + shadcn/ui tokens
+   Source: anthropic-design-system (OpenAI-generated HTML) → CSS-first config
+   Stack: React 19 · Tailwind CSS v4 · shadcn/ui + Radix UI · lucide-react
+   ----------------------------------------------------------------------------
+   Loaded at: src/globals.css (imported from src/main.tsx).
+   shadcn components read the semantic tokens (--background, --primary, ...).
+   Brand scales (coral / teal / purple / olive / gold / warm / ivory) are
+   exposed as utilities, e.g. bg-coral-500, text-teal-700, border-purple-200.
+   ============================================================================ */
+
+/* Fonts — Latin: Hanken Grotesk · 繁中: Noto Sans/Serif TC · Mono: IBM Plex Mono.
+   Self-hosted via fontsource; imported in src/main.tsx (not a CDN @import). */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------- shadcn semantic tokens (light) -------------------------------- */
+:root {
+  --radius: 1rem; /* generous rounding to match the brand's soft editorial feel */
+
+  --background: #faf9f5;          /* ivory-050 */
+  --foreground: #141413;          /* warm-950  */
+  --card: #ffffff;
+  --card-foreground: #141413;
+  --popover: #ffffff;
+  --popover-foreground: #141413;
+
+  --primary: #d97757;             /* coral-500 — primary brand action */
+  --primary-foreground: #1f1410;
+  --secondary: #f4f1e8;           /* ivory-100 — muted surface */
+  --secondary-foreground: #141413;
+  --muted: #f4f1e8;
+  --muted-foreground: #5e5d59;    /* warm-600 */
+  --accent: #ece7da;              /* ivory-200 — subtle hover surface */
+  --accent-foreground: #141413;
+  --destructive: #c6613f;         /* coral-600 — danger (see DESIGN.md note) */
+  --destructive-foreground: #faf9f5;
+
+  --border: #dcd8cc;
+  --input: #dcd8cc;
+  --ring: #8559da;                /* purple-500 — focus ring */
+
+  --chart-1: #d97757;             /* coral  */
+  --chart-2: #2a9d8f;             /* teal   */
+  --chart-3: #8559da;             /* purple */
+  --chart-4: #788c5d;             /* olive  */
+  --chart-5: #a87e2d;             /* gold   */
+
+  --sidebar: #f5f3eb;
+  --sidebar-foreground: #141413;
+  --sidebar-primary: #d97757;
+  --sidebar-primary-foreground: #1f1410;
+  --sidebar-accent: #ece7da;
+  --sidebar-accent-foreground: #141413;
+  --sidebar-border: #dcd8cc;
+  --sidebar-ring: #8559da;
+}
+
+/* ---------- shadcn semantic tokens (dark) --------------------------------- */
+.dark {
+  --background: #181816;
+  --foreground: #faf9f5;
+  --card: #21211e;
+  --card-foreground: #faf9f5;
+  --popover: #21211e;
+  --popover-foreground: #faf9f5;
+
+  --primary: #d97757;
+  --primary-foreground: #1f1410;
+  --secondary: #292924;
+  --secondary-foreground: #faf9f5;
+  --muted: #292924;
+  --muted-foreground: #d1cfc5;
+  --accent: #292924;
+  --accent-foreground: #faf9f5;
+  --destructive: #f7a284;         /* coral-300 */
+  --destructive-foreground: #1f1410;
+
+  --border: #3a3a36;
+  --input: #3a3a36;
+  --ring: #bfa3ff;                /* purple-300 */
+
+  --chart-1: #f7a284;
+  --chart-2: #7bd7c2;
+  --chart-3: #bfa3ff;
+  --chart-4: #a8be8f;
+  --chart-5: #e7c65e;
+
+  --sidebar: #21211e;
+  --sidebar-foreground: #faf9f5;
+  --sidebar-primary: #d97757;
+  --sidebar-primary-foreground: #1f1410;
+  --sidebar-accent: #292924;
+  --sidebar-accent-foreground: #faf9f5;
+  --sidebar-border: #3a3a36;
+  --sidebar-ring: #bfa3ff;
+}
+
+/* ---------- map semantic tokens → Tailwind utilities ---------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* radius scale (shadcn-style derivation from --radius) */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 1rem);
+
+  /* type stacks — Latin face leads, 繁中 falls through (Latin glyphs use the Latin
+     face; Chinese glyphs use Noto). fontsource variable family is suffixed
+     "Variable", so it leads, with the static name kept as a fallback. */
+  --font-sans: "Hanken Grotesk Variable", "Hanken Grotesk", "Noto Sans TC", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Hanken Grotesk Variable", "Hanken Grotesk", "Noto Serif TC", ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans TC", ui-monospace, "SFMono-Regular", Consolas, Menlo, monospace;
+}
+
+/* ---------- brand primitive scales → utilities ---------------------------- */
+/* Renamed from "slate" to "warm" so we don't shadow Tailwind's built-in slate. */
+@theme {
+  --color-ivory-50: #faf9f5;
+  --color-ivory-100: #f4f1e8;
+  --color-ivory-200: #ece7da;
+  --color-ivory-300: #e3dacc;
+  --color-ivory-400: #cfc3b1;
+
+  --color-warm-50: #f5f3eb;
+  --color-warm-100: #e8e6dc;
+  --color-warm-200: #d1cfc5;
+  --color-warm-300: #b9b6ad;
+  --color-warm-400: #9a9890;
+  --color-warm-500: #787770;
+  --color-warm-600: #5e5d59;
+  --color-warm-700: #3d3d3a;
+  --color-warm-800: #2b2b28;
+  --color-warm-900: #1f1f1c;
+  --color-warm-950: #141413;
+
+  --color-coral-50: #fff3ef;
+  --color-coral-100: #ffe3d8;
+  --color-coral-200: #ffc7b2;
+  --color-coral-300: #f7a284;
+  --color-coral-400: #e68461;
+  --color-coral-500: #d97757;
+  --color-coral-600: #c6613f;
+  --color-coral-700: #a94d32;
+  --color-coral-800: #813c2a;
+  --color-coral-900: #5e2d22;
+
+  --color-teal-50: #eefbf7;
+  --color-teal-100: #d5f4ec;
+  --color-teal-200: #aee8da;
+  --color-teal-300: #7bd7c2;
+  --color-teal-400: #47bea6;
+  --color-teal-500: #2a9d8f;
+  --color-teal-600: #1f7f75;
+  --color-teal-700: #1b665f;
+  --color-teal-800: #164f4a;
+  --color-teal-900: #113936;
+
+  --color-purple-50: #f5f1ff;
+  --color-purple-100: #ebe2ff;
+  --color-purple-200: #d9c7ff;
+  --color-purple-300: #bfa3ff;
+  --color-purple-400: #a177f6;
+  --color-purple-500: #8559da;
+  --color-purple-600: #6d44bd;
+  --color-purple-700: #56349a;
+  --color-purple-800: #412873;
+  --color-purple-900: #2d1d4d;
+
+  --color-olive-50: #f3f6ed;
+  --color-olive-100: #e4ead9;
+  --color-olive-200: #cad8b8;
+  --color-olive-300: #a8be8f;
+  --color-olive-400: #8fa66f;
+  --color-olive-500: #788c5d;
+  --color-olive-600: #5f7148;
+  --color-olive-700: #4a5839;
+  --color-olive-800: #38432e;
+  --color-olive-900: #293124;
+
+  --color-gold-50: #fff8df;
+  --color-gold-100: #ffefb5;
+  --color-gold-200: #f6df84;
+  --color-gold-300: #e7c65e;
+  --color-gold-400: #cfa442;
+  --color-gold-500: #a87e2d;
+  --color-gold-600: #815f25;
+  --color-gold-700: #624820;
+  --color-gold-800: #46331a;
+  --color-gold-900: #302314;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
